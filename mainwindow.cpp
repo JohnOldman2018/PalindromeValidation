@@ -31,7 +31,8 @@ void MainWindow::writeToFile(QString writeLine, QString fileName)
     outFile.close();
 }
 
-void MainWindow::readFromFile(QString fileName) {
+void MainWindow::readFromFile(QString fileName)
+{
     char buf[1024];
     QString qsTemp;
     QFile inputFile(fileName);
@@ -43,8 +44,8 @@ void MainWindow::readFromFile(QString fileName) {
         inputFile.readLine(buf, 1024);
         qsTemp = buf;
         qsTemp = qsTemp.trimmed();
-        if (isPalindrome(qsTemp))  qsTemp =  "yes, it is a palindrome: " + qsTemp;
-        else  qsTemp = "this is not a palindrome: " + qsTemp;
+        if (isPalindrome(qsTemp))  {qsTemp =  "yes, it is a palindrome: " + qsTemp;}
+        else  {qsTemp = "this is not a palindrome: " + qsTemp;}
         ui->plainTextEdit->appendPlainText(qsTemp);
         writeToFile(qsTemp, "output.txt");
     }
@@ -53,10 +54,10 @@ void MainWindow::readFromFile(QString fileName) {
 bool MainWindow::isPalindrome(QString line)
 {
        int j = line.size() - 1;
-       for (int i = 0; i < line.size(); i++){
-           if (line[i] == line[j]){
-               j--;
-               return true;
-           } else return false;
+       for (int i = 0; i < line.size(); i++)
+       {
+           if (line[i] != line[j]) return false;
+           j--;
        }
+       return true;
 }
